@@ -1,4 +1,5 @@
 import sys
+import time
 import tkinter as tk
 from tkinter import messagebox
 sys.path.insert(0, "./Questions")
@@ -6,8 +7,10 @@ from Questions import easy as e
 from Questions import medium as m
 from Questions import hard as h
 
-def create_app():
-    window = tk.Tk()
+class create_app(tk.Tk):
+  
+  def __init__(self):
+    window = self
     window.title("Quiz App")
     window.geometry("1000x500")
     label = tk.Label(text="quiz app")
@@ -61,10 +64,12 @@ def difficulty():
     for i in h.questions:
       print(i.body)
       print(i.answer)
+      print(i.wAnswer1)
+      print(i.wAnswer2)
       print("")
   else:
     print('Invalid Input')
     diffRedirect()
 
 if __name__ == '__main__':
-  create_app()
+  diffRedirect()
