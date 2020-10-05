@@ -1,5 +1,5 @@
 # Python Quiz App
-The python quiz app is a small desktop application.
+The python quiz app is a small desktop application.<br>
 This app is just a basic starter project for Tyler2P & Willos2006 to expand their knowlodge in python.
 
 # Includes
