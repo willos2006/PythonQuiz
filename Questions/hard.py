@@ -11,5 +11,11 @@ class Question:
 
 questions = []
 
-#q test
-questions.append(Question('This is the body', 'This is the answer'))
+#q1
+questions.append(Question('Question 1 hard', 'Q1 Answer'))
+
+#q2
+questions.append(Question('Question 2 hard', 'Q2 Answer'))
+
+#q3
+questions.append(Question('Question 3 hard', 'Q3 Answer'))
