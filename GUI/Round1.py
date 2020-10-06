@@ -31,7 +31,6 @@ def questionDone(answer):
         messagebox.showinfo(title="Correct Answer!", message="You were correct! You have gained a point")
         questionNo += 1
         main.score += 1
-        print(main.score)
         mainGUI.clear()
         loadQuestion()
 
@@ -51,7 +50,6 @@ def loadQuestion():
         text.pack(ipadx=50, ipady=10)
         tk.Label(text='\n\n').pack()
         doneButton = tk.Button(text="Submit Answer", height = 1, width = 15, bg = "blue", fg = "white", font = (None, 20), command=lambda: questionDone(text.get())).pack()
-
     except:
         tk.Label(text = "Round over! You got a score of: " + str(main.score), font = (None, 15), wraplength = 1000, justify = "center").pack()
 
