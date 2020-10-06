@@ -22,7 +22,7 @@ def questionDone(answer):
     global questionNo
     if answer == '':
         messagebox.showerror(message="Please type an answer", title="Invalid Answer")
-    elif answer != q.questions[questionNo].answer:
+    elif answer.lower() != q.questions[questionNo].answer.lower():
         messagebox.showerror(message="Wrong! The correct answer was "+str(q.questions[questionNo].answer), title="Wrong Answer!")
         questionNo += 1
         mainGUI.clear()
@@ -31,6 +31,7 @@ def questionDone(answer):
         messagebox.showinfo(title="Correct Answer!", message="You were correct! You have gained a point")
         questionNo += 1
         main.score += 1
+        print(main.score)
         mainGUI.clear()
         loadQuestion()
 
