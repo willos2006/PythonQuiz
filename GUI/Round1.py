@@ -17,23 +17,41 @@ title = tk.Label(
 )
 title.pack()
 
-def popUpFunc(title, text):
-    messagebox.showinfo(title=title, message=text)
+def questionDone(answer):
+    answer = str(answer)
+    global questionNo
+    if answer == '':
+        messagebox.showerror(message="Please type an answer", title="Invalid Answer")
+    elif answer != q.questions[questionNo].answer:
+        messagebox.showerror(message="Wrong! The correct answer was "+str(q.questions[questionNo].answer), title="Wrong Answer!")
+        questionNo += 1
+        mainGUI.clear()
+        loadQuestion()
+    else:
+        messagebox.showinfo(title="Correct Answer!", message="You were correct! You have gained a point")
+        questionNo += 1
+        main.score += 1
+        mainGUI.clear()
+        loadQuestion()
 
 def loadQuestion():
-    global questionNo
-    global doneButton
-    tk.Label(text = (str(questionNo + 1) + ") " + str(q.questions[questionNo].question)), font = (None, 15), wraplength = 1000, justify = "center").pack()
-    if(q.questions[questionNo].multipleChoice):
-        tk.Label(text = ("A) " + str(q.questions[questionNo].a1)), font = (None, 10), wraplength = 1000).pack()
-        tk.Label(text = ("B) " + str(q.questions[questionNo].a2)), font = (None, 10), wraplength = 1000).pack()
-        tk.Label(text = ("C) " + str(q.questions[questionNo].a3)), font = (None, 10), wraplength = 1000).pack()
-        tk.Label(text = ("D) " + str(q.questions[questionNo].a4)), font = (None, 10), wraplength = 1000).pack()
-    line = tk.Label(text="\n\n").pack()
-    tk.Label(text="Enter Answer:", font = (None, 14)).pack()
-    text = tk.Entry(bd=3)
-    text.pack(ipadx=50, ipady=10)
-    tk.Label(text='\n\n').pack()
-    doneButton = tk.Button(text="Submit Answer", height = 1, width = 15, bg = "blue", fg = "white", font = (None, 20), command=lambda: popUpFunc("Invalid Entry!", "Pst, This isnt working yet!!")).pack()
+    try:
+        global questionNo
+        global doneButton
+        tk.Label(text = (str(questionNo + 1) + ") " + str(q.questions[questionNo].question)), font = (None, 15), wraplength = 1000, justify = "center").pack()
+        if(q.questions[questionNo].multipleChoice):
+            tk.Label(text = ("A) " + str(q.questions[questionNo].a1)), font = (None, 10), wraplength = 1000).pack()
+            tk.Label(text = ("B) " + str(q.questions[questionNo].a2)), font = (None, 10), wraplength = 1000).pack()
+            tk.Label(text = ("C) " + str(q.questions[questionNo].a3)), font = (None, 10), wraplength = 1000).pack()
+            tk.Label(text = ("D) " + str(q.questions[questionNo].a4)), font = (None, 10), wraplength = 1000).pack()
+        line = tk.Label(text="\n\n").pack()
+        tk.Label(text="Enter Answer:", font = (None, 14)).pack()
+        text = tk.Entry(bd=3)
+        text.pack(ipadx=50, ipady=10)
+        tk.Label(text='\n\n').pack()
+        doneButton = tk.Button(text="Submit Answer", height = 1, width = 15, bg = "blue", fg = "white", font = (None, 20), command=lambda: questionDone(text.get())).pack()
+
+    except:
+        tk.Label(text = "Round over! You got a score of: " + str(main.score), font = (None, 15), wraplength = 1000, justify = "center").pack()
 
 loadQuestion()
